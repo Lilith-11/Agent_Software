@@ -16,8 +16,9 @@ func main() {
 		CPU:  collector.CollectCPUInfo(),
 		Disks:  collector.CollectDiskInfo(),
 		Network: collector.CollectNetworkInfo(),
-	}
+	}	
 
 	data, _ := json.MarshalIndent(payload, "", "  ")
 	fmt.Println(string(data))
+	
 }
