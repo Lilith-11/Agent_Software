@@ -7,6 +7,7 @@ import (
 	"github.com/lilith/agent/internal/collector/model"
 
     "fmt"
+	"os"
 
 )
 
@@ -20,5 +21,15 @@ func main() {
 
 	data, _ := json.MarshalIndent(payload, "", "  ")
 	fmt.Println(string(data))
-	
+	file,err:=os.Create("payload.json")
+	if err!=nil{
+		fmt.Println("Error creating file:",err)
+		return
+	}
+	defer file.Close()
+	_,err=file.Write(data)
+	if err!=nil{
+		fmt.Println("Error writing to file:",err)
+		return
+	}
 }
